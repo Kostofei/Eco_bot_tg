@@ -40,7 +40,11 @@ async def event_verification_two():
         for user in users:
             course = await MiniCourse.all(user_id=user.id)
             if course:
-                if course[0].day_two:
+                if course[0].day_one:
+                    course[0].day_one = False
+                    course[0].day_two = True
+                    await course[0].save()
+                elif course[0].day_two:
                     await Course.day_two_end(user_id=user.id)
                     course[0].day_two = False
                     course[0].day_three = True

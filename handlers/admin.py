@@ -7,7 +7,7 @@ from emuns import UserRole
 from models import User, Manager
 from keyboards.inline.general import AdminCallbackData
 from keyboards.inline.admin_ikb import (admin_menu_ikb, show_all_managers_ikb, confirm_add_manager_ikb,
-                                        back_show_all_managers_ikb)
+                                        back_show_all_managers_ikb, confirm_del_manager_ikb)
 from keyboards.inline.manager_ikb import notification_new_manager_ikb, manager_menu_ikb
 from state.admin import AddManager
 
@@ -192,10 +192,8 @@ async def get_manager(callback: CallbackQuery, callback_data: AdminCallbackData)
 
 
 @admin_router.callback_query(AdminCallbackData.filter((F.target == 'Admin') & (F.action == 'del_manager')))
-async def del_manager(callback: CallbackQuery):
-    await callback.answer("Удаление сейчас недоступно!!!")
-
-    """manager = await User.get(pk=callback_data.manager_id)
+async def del_manager(callback: CallbackQuery, callback_data: AdminCallbackData):
+    manager = await User.get(pk=callback_data.manager_id)
 
     await callback.message.edit_text(
         text=f"Вы действительно хотите перевести @{manager.tg_username} "
@@ -207,9 +205,18 @@ async def del_manager(callback: CallbackQuery):
 @admin_router.callback_query(AdminCallbackData.filter((F.target == 'Admin') & (F.action == 'confirm_del')))
 async def confirm_del(callback: CallbackQuery, callback_data: AdminCallbackData):
     manager = await User.get(pk=callback_data.manager_id)
+    manager_tabl = await Manager.get(user_id=callback_data.manager_id)
+
+    manager.role = UserRole.USER
+    await manager.save()
+
+    if manager_tabl:
+        await manager_tabl.delete()
+
+    await callback.answer("Пользователь удален из менеджеров!")
 
     await callback.message.edit_text(
         text="Список всех менеджеров\n"
              "(возможно удаление и добавлние)",
         reply_markup=await show_all_managers_ikb(callback_data=callback_data)
-    )"""
+    )

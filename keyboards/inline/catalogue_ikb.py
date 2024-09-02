@@ -14,10 +14,7 @@ async def catalogue_ikb(callback_data: UserCallbackData = None):
             [
                 InlineKeyboardButton(
                     text="ПОЛНЫЙ КАТАЛОГ",
-                    callback_data=UserCallbackData(**callback_data.model_dump() | {
-                        'target': 'Catalogue',
-                        'action': 'error'
-                    }).pack()
+                    url="https://clck.ru/3Bfxnn"
                 )
             ],
             [
