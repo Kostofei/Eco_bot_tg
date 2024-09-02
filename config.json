@@ -1,5 +1,5 @@
 {
-  "BOT1": {
+  "BOT": {
     "TOKEN": "6572987937:AAGEbCgBriOSFtelyxEznKGesL0b7xWj_SY"
   },
 
@@ -8,5 +8,5 @@
   },
 
   "DATABASE": "postgres:postgres@localhost:5432/eco_bot",
-  "CHAT_ID": -1002083355972,
+  "CHAT_ID": -1002083355972
 }

@@ -7,8 +7,6 @@ from models import User, MiniCourse
 from utils.channel import is_subscription
 from config import CONFIG
 
-from datetime import datetime
-
 mini_course_router = Router()
 
 
@@ -26,18 +24,11 @@ async def mini_course(callback: CallbackQuery, callback_data: UserCallbackData):
 
     if result:
         if not get_course:
-            if datetime.now().time().hour >= 19:
-                new_mini_course = MiniCourse(
-                    user_id=user.id,
-                    day_one=True
-                )
-                await new_mini_course.save()
-            else:
-                new_mini_course = MiniCourse(
-                    user_id=user.id,
-                    day_two=True
-                )
-                await new_mini_course.save()
+            new_mini_course = MiniCourse(
+                user_id=user.id,
+                day_two=True
+            )
+            await new_mini_course.save()
 
             await Course.start(callback=callback, callback_data=callback_data)
 

@@ -111,7 +111,7 @@ class Course(object):
             reply_markup=await main_menu_ikb()
         )
 
-        # document = types.FSInputFile('files/mini_course/Мини-курс день 1.pdf')
+        # document = FSInputFile('files/mini_course/Мини-курс день 1.pdf')
         document = types.FSInputFile("/opt/git/Eco_bot_tg/files/mini_course/Мини-курс день 1.pdf")
 
         await callback.message.answer_document(
@@ -161,7 +161,6 @@ class Course(object):
             parse_mode="HTML"
         )
 
-        # document = types.FSInputFile('files/mini_course/Мини-курс день 2.pdf')
         document = types.FSInputFile("/opt/git/Eco_bot_tg/files/mini_course/Мини-курс день 2.pdf")
 
         await bot.send_document(
@@ -179,7 +178,6 @@ class Course(object):
                 "<b>🌿 Мудрость дня:</b> Никогда не недооценивай силу, которой ты обладаешь, "
                 "чтобы направить свою жизнь в новое русло!")
 
-        # photo_one = types.FSInputFile("media/p3.png")
         photo_one = types.FSInputFile("/opt/git/Eco_bot_tg/media/p3.png")
 
         await bot.send_photo(
@@ -203,7 +201,6 @@ class Course(object):
             parse_mode="HTML"
         )
 
-        # document = types.FSInputFile('files/mini_course/Мини-курс день 3.pdf')
         document = types.FSInputFile("/opt/git/Eco_bot_tg/files/mini_course/Мини-курс день 3.pdf")
 
         await bot.send_document(
@@ -214,6 +211,7 @@ class Course(object):
 
     @staticmethod
     async def day_four_start(user_id: int):
+
         text = ("Доброе утро ☀️\n\n"
                 "<b>Вода – ключ к хорошему настроению и самочувствию. "
                 "Сегодня разбираемся почему это так важно!!!</b>\n"
@@ -222,7 +220,6 @@ class Course(object):
                 "Хорошего дня!\n\n"
                 "<b>🌿 Мудрость дня:</b> Начало - самая важная часть работы!")
 
-        # photo_one = types.FSInputFile("media/p4.png")
         photo_one = types.FSInputFile("/opt/git/Eco_bot_tg/media/p4.png")
 
         await bot.send_photo(
@@ -246,7 +243,6 @@ class Course(object):
             parse_mode="HTML"
         )
 
-        # document = types.FSInputFile('files/mini_course/Мини-курс день 4.pdf')
         document = types.FSInputFile("/opt/git/Eco_bot_tg/files/mini_course/Мини-курс день 4.pdf")
 
         await bot.send_document(
@@ -267,7 +263,6 @@ class Course(object):
                 "<b>🌿 Мудрость дня:</b> Хотя никто не может вернуться назад и начать все с начала, "
                 "но каждый может начать с этого момента и закончить все по-новому!")
 
-        # photo_one = types.FSInputFile("media/p5.png")
         photo_one = types.FSInputFile("/opt/git/Eco_bot_tg/media/p5.png")
 
         await bot.send_photo(
@@ -290,7 +285,6 @@ class Course(object):
             parse_mode="HTML"
         )
 
-        # document = types.FSInputFile('files/mini_course/Мини-курс день 5.pdf')
         document = types.FSInputFile("/opt/git/Eco_bot_tg/files/mini_course/Мини-курс день 5.pdf")
 
         await bot.send_document(
@@ -309,7 +303,6 @@ class Course(object):
                 "<b>🌿 Мудрость дня:</b> Ваша жизнь не становится лучше случайно. "
                 "Она становится лучше благодаря переменам!")
 
-        # photo_one = types.FSInputFile("media/p6.png")
         photo_one = types.FSInputFile("/opt/git/Eco_bot_tg/media/p6.png")
 
         await bot.send_photo(
@@ -331,7 +324,6 @@ class Course(object):
             parse_mode="HTML"
         )
 
-        # document = types.FSInputFile('files/mini_course/Мини-курс день 6.pdf')
         document = types.FSInputFile("/opt/git/Eco_bot_tg/files/mini_course/Мини-курс день 6.pdf")
 
         await bot.send_document(
@@ -348,7 +340,6 @@ class Course(object):
                 "<b>🌿 Мудрость дня:</b> Как только у вас появилась решимость, "
                 "вам нужна дисциплина и упорный труд, чтобы добиться этого!")
 
-        # photo_one = types.FSInputFile("media/p7.png")
         photo_one = types.FSInputFile("/opt/git/Eco_bot_tg/media/p7.png")
 
         await bot.send_photo(
@@ -371,7 +362,6 @@ class Course(object):
             parse_mode="HTML"
         )
 
-        # document = types.FSInputFile('files/mini_course/Мини-курс день 7.pdf')
         document = types.FSInputFile("/opt/git/Eco_bot_tg/files/mini_course/Мини-курс день 7.pdf")
 
         await bot.send_document(
