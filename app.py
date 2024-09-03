@@ -92,8 +92,8 @@ async def start():
 
     await bot.delete_webhook()
     try:
+        await bot.send_message(540697966, "Бот успешно запущен и готов к работе!")
         await dp.start_polling(bot)
-
     finally:
         await bot.session.close()
 
