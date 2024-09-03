@@ -9,8 +9,10 @@ from config.config import bot
 from models import User, Dialog
 from keyboards.inline.general import UserCallbackData
 from keyboards.inline import start_ikb
+import logging
 
 start_router = Router()
+logging.basicConfig(filename='/home/dev4/Eco_bot_tg/bot_errors.log', level=logging.ERROR)
 
 
 @start_router.message(CommandStart(deep_link=True))
@@ -41,17 +43,20 @@ async def start_with_link(message: Message, command: CommandObject):
             )
         await dialog.save()
 
-        photo = types.FSInputFile("media/start.jpg")
+        # photo = types.FSInputFile("media/start1.jpg")
         # photo = types.FSInputFile("/opt/git/Eco_bot_tg/media/start.jpg")
-        # photo = types.FSInputFile("/home/dev4/Eco_bot_tg/media/start.jpg")
+        photo = types.FSInputFile("/home/dev4/Eco_bot_tg/media/start.jpg")
 
-        await message.answer_photo(
-            photo=photo,
-            caption="🌏 Приветствую в ЭКОботе 🌏\n"
-                    "Если Главное меню бота будет скрыто, то нажми синюю кнопку Меню внизу экрана\n"
-                    "👇 А сейчас выбери интересующий раздел",
-            reply_markup=await start_ikb()
-        )
+        try:
+            await message.answer_photo(
+                photo=photo,
+                caption="🌏 Приветствую в ЭКОботе 🌏\n"
+                        "Если Главное меню бота будет скрыто, то нажми синюю кнопку Меню внизу экрана\n"
+                        "👇 А сейчас выбери интересующий раздел",
+                reply_markup=await start_ikb()
+            )
+        except Exception as e:
+            logging.error(f"Ошибка при отправке фото: {e}")
 
 
 @start_router.message(CommandStart())
@@ -67,19 +72,22 @@ async def cmd_start(message: Message, state: FSMContext):
 
     await state.clear()
 
-    photo = types.FSInputFile("media/start.jpg")
+    # photo = types.FSInputFile("media/start1.jpg")
     # photo = types.FSInputFile("/opt/git/Eco_bot_tg/media/start.jpg")
-    # photo = types.FSInputFile("/home/dev4/Eco_bot_tg/media/start.jpg")
+    photo = types.FSInputFile("/home/dev4/Eco_bot_tg/media/start.jpg")
 
     if await User.get(pk=message.from_user.id):
 
-        await message.answer_photo(
-            photo=photo,
-            caption="🌏 Приветствую в ЭКОботе 🌏\n"
-                    "Если Главное меню бота будет скрыто, то нажми синюю кнопку Меню внизу экрана\n"
-                    "👇 А сейчас выбери интересующий раздел",
-            reply_markup=await start_ikb()
-        )
+        try:
+            await message.answer_photo(
+                photo=photo,
+                caption="🌏 Приветствую в ЭКОботе 🌏\n"
+                        "Если Главное меню бота будет скрыто, то нажми синюю кнопку Меню внизу экрана\n"
+                        "👇 А сейчас выбери интересующий раздел",
+                reply_markup=await start_ikb()
+            )
+        except Exception as e:
+            logging.error(f"Ошибка при отправке фото: {e}")
 
     else:
         user = User(
@@ -89,13 +97,17 @@ async def cmd_start(message: Message, state: FSMContext):
             tg_username=message.from_user.username
             )
         await user.save()
-        await message.answer_photo(
-            photo=photo,
-            caption="🌏 Приветствую в ЭКОботе 🌏\n"
-                    "Если Главное меню бота будет скрыто, то нажми синюю кнопку Меню внизу экрана\n"
-                    "👇 А сейчас выбери интересующий раздел",
-            reply_markup=await start_ikb()
-        )
+
+        try:
+            await message.answer_photo(
+                photo=photo,
+                caption="🌏 Приветствую в ЭКОботе 🌏\n"
+                        "Если Главное меню бота будет скрыто, то нажми синюю кнопку Меню внизу экрана\n"
+                        "👇 А сейчас выбери интересующий раздел",
+                reply_markup=await start_ikb()
+            )
+        except Exception as e:
+            logging.error(f"Ошибка при отправке фото: {e}")
 
 
 @start_router.callback_query(UserCallbackData.filter((F.target == 'main_menu') & (F.action == 'open')))
@@ -103,15 +115,18 @@ async def main_menu(callback: CallbackQuery, state: FSMContext):
     await callback.message.delete()
     await state.clear()
 
-    photo = types.FSInputFile("media/start.jpg")
+    # photo = types.FSInputFile("media/start1.jpg")
     # photo = types.FSInputFile("/opt/git/Eco_bot_tg/media/start.jpg")
-    # photo = types.FSInputFile("/home/dev4/Eco_bot_tg/media/start.jpg")
+    photo = types.FSInputFile("/home/dev4/Eco_bot_tg/media/start.jpg")
 
     if await User.get(pk=callback.from_user.id):
-        await callback.message.answer_photo(
-            photo=photo,
-            caption="🌏 Приветствую в ЭКОботе 🌏\n"
-                    "Если Главное меню бота будет скрыто, то нажми синюю кнопку Меню внизу экрана\n"
-                    "👇 А сейчас выбери интересующий раздел",
-            reply_markup=await start_ikb()
-        )
+        try:
+            await callback.message.answer_photo(
+                photo=photo,
+                caption="🌏 Приветствую в ЭКОботе 🌏\n"
+                        "Если Главное меню бота будет скрыто, то нажми синюю кнопку Меню внизу экрана\n"
+                        "👇 А сейчас выбери интересующий раздел",
+                reply_markup=await start_ikb()
+            )
+        except Exception as e:
+            logging.error(f"Ошибка при отправке фото: {e}")
