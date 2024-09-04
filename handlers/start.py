@@ -12,7 +12,7 @@ from keyboards.inline import start_ikb
 import logging
 
 start_router = Router()
-# logging.basicConfig(filename='/home/dev4/Eco_bot_tg/bot_errors.log', level=logging.ERROR)
+logging.basicConfig(filename='/home/dev4/Eco_bot_tg/bot_errors.log', level=logging.ERROR)
 
 
 @start_router.message(CommandStart(deep_link=True))
@@ -45,9 +45,9 @@ async def start_with_link(message: Message, command: CommandObject):
             )
         await dialog.save()
 
-        photo = types.FSInputFile("media/start.jpg")
+        # photo = types.FSInputFile("media/start.jpg")
         # photo = types.FSInputFile("/opt/git/Eco_bot_tg/media/start.jpg")
-        # photo = types.FSInputFile("/home/dev4/Eco_bot_tg/media/start.jpg")
+        photo = types.FSInputFile("/home/dev4/Eco_bot_tg/media/start.jpg")
 
         try:
             await message.answer_photo(
@@ -75,9 +75,9 @@ async def cmd_start(message: Message, state: FSMContext):
 
     await state.clear()
 
-    photo = types.FSInputFile("media/start.jpg")
+    # photo = types.FSInputFile("media/start.jpg")
     # photo = types.FSInputFile("/opt/git/Eco_bot_tg/media/start.jpg")
-    # photo = types.FSInputFile("/home/dev4/Eco_bot_tg/media/start.jpg")
+    photo = types.FSInputFile("/home/dev4/Eco_bot_tg/media/start.jpg")
 
     if await User.get(pk=message.from_user.id):
 
@@ -119,9 +119,9 @@ async def main_menu(callback: CallbackQuery, state: FSMContext):
     await callback.message.delete()
     await state.clear()
 
-    photo = types.FSInputFile("media/start.jpg")
+    # photo = types.FSInputFile("media/start.jpg")
     # photo = types.FSInputFile("/opt/git/Eco_bot_tg/media/start.jpg")
-    # photo = types.FSInputFile("/home/dev4/Eco_bot_tg/media/start.jpg")
+    photo = types.FSInputFile("/home/dev4/Eco_bot_tg/media/start.jpg")
 
     if await User.get(pk=callback.from_user.id):
         try:
