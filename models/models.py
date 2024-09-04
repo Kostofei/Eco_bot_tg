@@ -37,8 +37,15 @@ class BaseMixin(object):
 
     @classmethod
     @create_async_session
-    async def get(cls, pk: int, session: AsyncSession = None) -> Base:
-        return await session.get(cls, pk)
+    async def get(cls, pk: int = None, user_id: int = None, session: AsyncSession = None) -> Base:
+        stmt = select(cls)
+        if pk:
+            stmt = stmt.where(cls.id == pk)
+        if user_id:
+            stmt = stmt.where(cls.user_id == user_id)
+
+        result = await session.execute(stmt)
+        return result.scalar_one_or_none()
 
     @classmethod
     @create_async_session

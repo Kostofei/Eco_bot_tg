@@ -57,7 +57,6 @@ async def manager_menu(message: Message, state: FSMContext):
 @admin_router.callback_query(AdminCallbackData.filter((F.target == 'admin_menu') & (F.action == 'open')))
 async def admin_menu(callback: CallbackQuery, state: FSMContext):
     await state.clear()
-
     await callback.message.edit_text(
         text=f"<b>{callback.from_user.full_name}</b>, вы вошли в  <u>панель администратора!</u>!",
         reply_markup=await admin_menu_ikb()
@@ -67,7 +66,6 @@ async def admin_menu(callback: CallbackQuery, state: FSMContext):
 @admin_router.callback_query(AdminCallbackData.filter((F.target == 'Admin') & (F.action == 'show_all_managers')))
 async def show_all_managers(callback: CallbackQuery, callback_data: AdminCallbackData, state: FSMContext):
     await state.clear()
-
     await callback.message.edit_text(
         text="Список всех менеджеров\n"
              "(возможно удаление и добавлние)",
@@ -77,7 +75,6 @@ async def show_all_managers(callback: CallbackQuery, callback_data: AdminCallbac
 
 @admin_router.callback_query(AdminCallbackData.filter((F.target == 'Admin') & (F.action == 'add_manager')))
 async def add_manager(callback: CallbackQuery, state: FSMContext):
-
     await state.set_state(AddManager.user_id)
     await callback.message.edit_text(
         text="Введите id пользователя, которого нужно перевести в менеджеры",
