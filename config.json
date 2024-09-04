@@ -9,5 +9,5 @@
 
   "DATABASE": "postgres:postgres@localhost:5432/eco_bot",
   "CHAT_ID1": -1002083355972,
-  "CHAT_ID": -1001066197625
+  "CHAT_ID": -1002147127559
 }
