@@ -67,8 +67,8 @@ async def cmd_start(message: Message, state: FSMContext):
 
     await state.clear()
 
-    photo = types.FSInputFile("media/start.jpg")
-    # photo = types.FSInputFile("/opt/git/Eco_bot_tg/media/start.jpg")
+    # photo = types.FSInputFile("media/start.jpg")
+    photo = types.FSInputFile("/opt/git/Eco_bot_tg/media/start.jpg")
 
     if await User.get(pk=message.from_user.id):
         await message.answer_photo(
