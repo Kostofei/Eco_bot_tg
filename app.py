@@ -7,7 +7,6 @@ from models import User, MiniCourse
 from utils.mini_cuorce import Course
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from apscheduler.triggers.cron import CronTrigger
-from apscheduler.triggers.interval import IntervalTrigger  #  Удалить
 
 
 async def event_verification():
@@ -86,12 +85,8 @@ async def start():
     dp.startup.register(set_default_commands)
     scheduler = AsyncIOScheduler()
 
-    # scheduler.add_job(event_verification, trigger=CronTrigger(hour=5, minute=0))
-    # scheduler.add_job(event_verification_two, trigger=CronTrigger(hour=16, minute=0))
-
-    # Удалить
-    scheduler.add_job(event_verification, trigger=IntervalTrigger(seconds=120))
-    scheduler.add_job(event_verification_two, trigger=IntervalTrigger(seconds=130))
+    scheduler.add_job(event_verification, trigger=CronTrigger(hour=5, minute=0))
+    scheduler.add_job(event_verification_two, trigger=CronTrigger(hour=16, minute=0))
 
     scheduler.start()
 
